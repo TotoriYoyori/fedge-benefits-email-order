@@ -66,14 +66,17 @@ def test_user_private_schema_valid():
         "role": "user",
         "authentication_time": "2024-08-24 10-00-00",
         "registration_time": now,
+        # Even if a caller tries to pass a password_hash in, UserPrivate has no such
+        # field anymore, so it's silently ignored rather than echoed back.
         "password_hash": "hashed_pw_here_is_long_enough",
         "message": "Custom welcome"
     }
     schema = UserPrivate(**data)
-    
+
     assert schema.username == "privateuser"
-    assert schema.password_hash == "hashed_pw_here_is_long_enough"
     assert schema.registration_time == now
+    assert not hasattr(schema, "password_hash")
+    assert "password_hash" not in schema.model_dump()
 
     resp_schema = AuthResponse(**data)
     assert "password_hash" not in resp_schema.model_dump()

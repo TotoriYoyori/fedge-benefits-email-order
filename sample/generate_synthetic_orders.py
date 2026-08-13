@@ -2,7 +2,7 @@
 data had — used as the demo fixture and to keep the repo reproducible without
 any real customer data. Re-run with a fixed seed for stable output.
 
-Usage: python scripts/generate_synthetic_orders.py
+Usage: python sample/generate_synthetic_orders.py
 """
 
 import csv
@@ -31,7 +31,7 @@ TREATMENTS = [
     "foot care wellness package 75 min x1",
     "foot care wellness spa 60 min x1",
 ]
-OUTPUT_PATH = Path(__file__).resolve().parent.parent / "src" / "orders" / "sample" / "synthetic_orders.csv"
+OUTPUT_PATH = Path(__file__).resolve().parent / "sample_orders.csv"
 
 
 def fake_order_number(batch: int) -> str:

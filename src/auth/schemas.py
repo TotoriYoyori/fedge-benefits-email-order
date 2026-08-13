@@ -84,7 +84,3 @@ class UserPrivate(AuthResponse):
     registration_time: dt.datetime = Field(
         ..., description="The date and time when the user registered."
     )
-    password_hash: str = Field(
-        min_length=8,
-        description="The hashed password of the user for internal verification.",
-    )

@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.auth.exceptions import (
     AlreadyAuthenticated,
     InsufficientPermission,
-    UnauthenticatedUser,
+    InvalidCredentials,
     UsernameAlreadyExists,
 )
 from src.auth.models import User
@@ -21,12 +21,6 @@ from src.auth.service import (
 )
 from src.database import get_db
 
-# Note: the source project also supported cookie-based auth for its SSR pages
-# (`require_role(..., use_cookie=True)`), routed through a `src.auth.redirect`
-# helper. That SSR layer isn't part of this extraction, so this trimmed version
-# is Bearer-token only — every route in this repo authenticates via the
-# Authorization header, never a cookie.
-
 
 # =============== USER AUTHENTICATION DEPENDENCIES ===============
 async def valid_login_credentials(
@@ -39,7 +33,7 @@ async def valid_login_credentials(
     Use as dependency injection only.
 
     Raises:
-        UnauthenticatedUser: If the username does not exist or the password is invalid.
+        InvalidCredentials: If the username does not exist or the password is invalid.
 
     Example:
         >>> async def login(valid_login_user: Annotated[User, Depends(valid_login_credentials)]):
@@ -49,7 +43,7 @@ async def valid_login_credentials(
     """
     user = await get_user_by("username", login_form.username, db)
     if not user or not verify_password(login_form.password, user.password_hash):
-        raise UnauthenticatedUser
+        raise InvalidCredentials
 
     return user
 

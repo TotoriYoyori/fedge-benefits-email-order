@@ -103,7 +103,7 @@ uv run pytest
 To seed the database with synthetic demo data instead of connecting a real Gmail account:
 
 ```bash
-uv run python scripts/generate_synthetic_orders.py
+uv run python sample/generate_synthetic_orders.py
 ```
 
 Real Gmail integration requires your own Google Cloud OAuth client (`GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET` in `.env`) with Gmail API scopes enabled — see `.env.example` for the exact settings and a note on why a public demo would need Google's app-verification review to request those scopes.
@@ -113,6 +113,24 @@ Real Gmail integration requires your own Google Cloud OAuth client (`GOOGLE_CLIE
 This repo contains a real, working OAuth2/PKCE flow and Gmail API client. Cloning it does **not** give someone access to any real account or data — it gives them code that, pointed at *their own* Google Cloud OAuth client, can authenticate a user and call the Gmail API on that user's behalf, same as any tutorial or open-source OAuth example. No credentials, tokens, or client secrets are committed anywhere in this repo; `.env` is git-ignored and only `.env.example` (placeholder values) is tracked.
 
 The original project's local database and `.env` (which would have contained real, if long-expired, OAuth refresh tokens and email-provider API keys) were never carried into this repo — this history starts fresh. As routine hygiene for the retired original project, the real Google OAuth client and email-provider API keys tied to it should be treated as rotated/revoked rather than reused.
+
+## Error response design
+
+Revisiting the API surface for this extraction surfaced a real information-disclosure pattern, not just a hypothetical one: `/auth/register` returned a distinct 409 for a taken username, `/auth/login` returned a distinct 401 for a wrong password, and every bearer-token/role-gated route (`/auth/me`, and everything behind `require_role` — orders, notification, google) returned a distinct 401 vs 403 vs 404 depending on *why* the caller was rejected. None of that was exploited anywhere — this project never had real users — but each of those distinctions is exactly the kind of thing that lets an API be used to enumerate valid usernames, confirm whether a specific account exists, or probe which parts of a system a given token can and can't reach.
+
+The fix was to settle on one rule: an endpoint should never reveal more than success or failure. Concretely, that means two fixed, generic responses now cover every failure case in `auth`, `notification`, and `google`:
+
+- `422 {"detail": "Invalid request."}` for `/register` and `/login` — a taken username, a wrong password, an unknown username, being already logged in, and a malformed request body are all indistinguishable from the outside.
+- `404 {"detail": "Not found."}` for every bearer-token/role-gated route — a missing token, an expired or malformed token, a token for a deleted user, and a valid token with the wrong role are all indistinguishable. This is deliberately the same pattern GitHub uses for private repos you can't access: 404 instead of 403, so the response doesn't even confirm the resource exists.
+
+The internal exception classes that used to map one-to-one with those distinct HTTP statuses — `UserNotFound`, `MalformedToken`, `UnauthenticatedUser`, `InsufficientPermission`, `UsernameAlreadyExists`, `AlreadyAuthenticated`, and so on — are still there, and deliberately weren't collapsed into one exception type just because their HTTP responses were. A few reasons that held up under scrutiny:
+
+- **Tests still need the precision.** `tests/test_auth/test_dependencies.py` and `tests/test_google/test_dependencies.py` assert things like `pytest.raises(InsufficientPermission)` at the dependency layer, independent of what the HTTP layer does with it. That's a stronger regression check than "some auth exception was raised" — it catches a bug where, say, a deleted-user case gets misclassified as a malformed-token case, even though both produce the identical response externally.
+- **Internal observability shouldn't be as blind as the external response.** The whole point of the change is that the *caller* shouldn't be able to tell these cases apart. The operator running the server still benefits from being able to tell them apart in logs, error tracking, or metrics — that's a different audience with a legitimate reason to know more.
+- **It keeps two different concerns in two different places.** The dependency/service layer's job is to say *why* something failed, in domain terms. The exception handler's job is to decide what the caller is allowed to learn from that. Merging the exception classes would bake a security/presentation policy into business logic — coupling that gets easy to get wrong later, since a new failure mode would have no distinct class to prompt the question "should this be generic too?"
+- **The mapping stays reversible.** Because the collapsing happens entirely in each domain's `ExceptionHandler` (see `auth/exceptions.py`, `google/exceptions.py`), changing which failures share a response is a one-place edit, not a hunt through every raise site in the codebase.
+
+The trade-off is real and worth stating plainly: a legitimate caller loses some debuggability. A login typo now looks identical to a taken username; a genuinely missing OAuth credential looks identical to an expired token. That's the deliberate cost of removing the enumeration surface, not an oversight.
 
 ## License
 

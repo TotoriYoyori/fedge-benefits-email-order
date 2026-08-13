@@ -3,12 +3,12 @@ from unittest.mock import AsyncMock, patch
 
 from src.orders.service import (
     export_orders_csv,
-    fetch_and_persist_benify_orders,
+    fetch_and_persist_provider_orders,
     list_persisted_orders,
 )
 
 
-async def test_fetch_and_persist_benify_orders_skips_malformed_messages(session):
+async def test_fetch_and_persist_provider_orders_skips_malformed_messages(session):
     gmail_service = SimpleNamespace()
     messages = [
         {
@@ -23,7 +23,7 @@ async def test_fetch_and_persist_benify_orders_skips_malformed_messages(session)
             )
         },
         {
-            "body": "This is from Benify but does not contain a parseable order number.\n"
+            "body": "This is from the provider but does not contain a parseable order number.\n"
         },
     ]
 
@@ -31,7 +31,7 @@ async def test_fetch_and_persist_benify_orders_skips_malformed_messages(session)
         "src.orders.service.get_gmail_messages",
         new=AsyncMock(return_value={"messages": messages, "result_size_estimate": 2}),
     ):
-        response = await fetch_and_persist_benify_orders(
+        response = await fetch_and_persist_provider_orders(
             db=session,
             gmail_service=gmail_service,
             merchant_id=42,
@@ -65,7 +65,7 @@ async def test_export_orders_csv_matches_persisted_orders(session):
         "src.orders.service.get_gmail_messages",
         new=AsyncMock(return_value={"messages": messages, "result_size_estimate": 1}),
     ):
-        await fetch_and_persist_benify_orders(
+        await fetch_and_persist_provider_orders(
             db=session,
             gmail_service=gmail_service,
             merchant_id=7,

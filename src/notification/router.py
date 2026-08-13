@@ -14,8 +14,6 @@ from src.notification.schemas import (
 from src.notification.service import send_email
 from src.notification.service.email import write_email_html
 
-# Note: the preview endpoint below renders this domain's own local Jinja template
-# (see templating.py) rather than a shared SSR template layer — see README for why.
 
 # =============== ROUTER ===============
 router = APIRouter(prefix="/api/v1/notification", tags=["api-notification"])
@@ -28,15 +26,11 @@ router = APIRouter(prefix="/api/v1/notification", tags=["api-notification"])
     summary="Send a notification email",
     responses={
         200: {"description": "Notification email sent successfully"},
-        401: {"description": "Authentication credentials were not provided or are invalid"},
-        403: {"description": "Authenticated user does not have permission to send notification emails"},
-        422: {"description": "Request credentials are invalid or email content could not be built"},
+        404: {"description": "Not found."},
+        422: {"description": "Invalid request body"},
     },
 )
 async def send_notify_email(
-    # Merchants send their own customers' reminders; admins can send for anyone.
-    # (This matches the documented example in auth.dependencies.require_role —
-    # a prior admin-only version of this route was a drift bug, fixed here.)
     _valid_user: Annotated[User, Depends(require_role("merchant", "admin"))],
     send_request: EmailSendRequest,
 ):

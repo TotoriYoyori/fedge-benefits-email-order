@@ -22,7 +22,7 @@ router = APIRouter(prefix="/api/v1/auth", tags=["api-auth"])
     "/register",
     summary="Register a new user",
     description=(
-        "Registers a new user. Expects username, email, and password. It checks if the username is already taken. "
+        "Registers a new user. Expects username, email, and password. "
         "If a valid `role_key` is provided, the user is assigned a specific role (e.g., admin, editor), "
         "otherwise, the default role is 'user'."
     ),
@@ -30,9 +30,7 @@ router = APIRouter(prefix="/api/v1/auth", tags=["api-auth"])
     status_code=status.HTTP_201_CREATED,
     responses={
         201: {"model": AuthResponse, "description": "Successfully registered"},
-        400: {"description": "Malformed input"},
-        403: {"description": "Already authenticated"},
-        409: {"description": "Username already exists"},
+        422: {"description": "Invalid request."},
     },
     dependencies=[Depends(not_currently_logged_in)],
 )
@@ -55,8 +53,7 @@ async def register(
     status_code=status.HTTP_200_OK,
     responses={
         200: {"model": Token, "description": "Successfully logged in"},
-        401: {"description": "Invalid new_credential"},
-        403: {"description": "Already authenticated"},
+        422: {"description": "Invalid request."},
     },
     dependencies=[Depends(not_currently_logged_in)],
 )
@@ -73,7 +70,7 @@ async def login(
     summary="Get current user details",
     description=(
         "Returns the detailed profile of the currently authenticated user. "
-        "Requires a valid JWT access_token in the Authorization header."
+        "Requires a valid JWT access_token in the Authorization header by first being logged in."
     ),
     response_model=UserPrivate,
     responses={
@@ -81,9 +78,7 @@ async def login(
             "model": UserPrivate,
             "description": "Successfully retrieved user profile",
         },
-        401: {"description": "Unauthorized access"},
-        403: {"description": "Insufficient permissions"},
-        404: {"description": "User not found"},
+        404: {"description": "Not found."},
     },
 )
 async def me(authorized_user: Annotated[User, Depends(valid_access_token)]):

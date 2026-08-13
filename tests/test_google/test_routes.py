@@ -34,13 +34,17 @@ class TestOAuth2Route(TestRoute):
         token = await self.jwt_token(role)
         response = await self.request_route(token=token)
 
-        assert response.status_code == status.HTTP_403_FORBIDDEN
+        # Wrong role collapses into the same generic "not found" response as
+        # no token at all — never a distinguishable 403.
+        assert response.status_code == status.HTTP_404_NOT_FOUND
+        assert response.json() == {"detail": "Not found."}
         mock_initiate_oauth2.assert_not_awaited()
 
     async def test_requires_authentication(self, mock_initiate_oauth2):
         response = await self.request_route()
 
-        assert response.status_code == status.HTTP_401_UNAUTHORIZED
+        assert response.status_code == status.HTTP_404_NOT_FOUND
+        assert response.json() == {"detail": "Not found."}
         mock_initiate_oauth2.assert_not_awaited()
 
 
@@ -59,19 +63,17 @@ class TestCallbackRoute(TestRoute):
     async def test_missing_exchange_code(self, mock_exchange_code_for_credentials):
         response = await self.request_route(state="OVMhZYD07kJtW1uA7nW1bTYk3AZ0ZJ")
 
-        assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert response.json() == {
-            "detail": "Invalid Google OAuth callback. Please restart the Google OAuth flow."
-        }
+        # Collapses into the same generic validation error as any other bad
+        # input — never a descriptive "invalid callback" message.
+        assert response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+        assert response.json() == {"detail": "Invalid request."}
         mock_exchange_code_for_credentials.assert_not_awaited()
 
     async def test_missing_oauth_state(self, mock_exchange_code_for_credentials):
         response = await self.request_route(code="google-exchange-code")
 
-        assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert response.json() == {
-            "detail": "Invalid Google OAuth callback. Please restart the Google OAuth flow."
-        }
+        assert response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+        assert response.json() == {"detail": "Invalid request."}
         mock_exchange_code_for_credentials.assert_not_awaited()
 
     async def test_returns_credentials_response(
@@ -127,12 +129,7 @@ class TestMeRoute(TestRoute):
         response = await self.request_route(token=token)
 
         assert response.status_code == status.HTTP_404_NOT_FOUND
-        assert response.json() == {
-            "detail": (
-                "Google OAuth user_google_credential is invalid. Please redo the Google "
-                "OAuth flow to obtain a new user_google_credential."
-            )
-        }
+        assert response.json() == {"detail": "Not found."}
 
 
 # =============== /gmail ROUTE ===============
@@ -170,9 +167,4 @@ class TestGmailRoute(TestRoute):
         response = await self.request_route(token=token)
 
         assert response.status_code == status.HTTP_404_NOT_FOUND
-        assert response.json() == {
-            "detail": (
-                "Google OAuth user_google_credential is invalid. Please redo the Google "
-                "OAuth flow to obtain a new user_google_credential."
-            )
-        }
+        assert response.json() == {"detail": "Not found."}

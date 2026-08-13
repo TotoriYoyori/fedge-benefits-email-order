@@ -11,8 +11,10 @@ class NotificationSettings(DomainSettings):
     EMAIL_PROVIDER: EmailProviderName
     EMAIL_FROM_NAME: str
     EMAIL_FROM_ADDRESS: EmailStr
+
     # ===== Resend-specific settings
     RESEND_API_KEY: Optional[str] = None
+
     # ===== Mailtrap-specific settings
     MAILTRAP_API_KEY: Optional[str] = None
     MAILTRAP_SANDBOX_INBOX_ID: Optional[int] = None

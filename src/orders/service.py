@@ -13,10 +13,10 @@ from src.orders.parsers import OrdersParser
 from src.schemas import PaginationQuery
 
 
-BENIFY_SENDER = "fps@benify.com"
+PROVIDER_SENDER = "orders@benefits-provider.example"
 
 
-async def list_benify_orders(
+async def list_provider_orders(
     gmail_service: Resource,
     merchant_id: int,
     max_results: int,
@@ -28,7 +28,7 @@ async def list_benify_orders(
         service=gmail_service,
         pagination=PaginationQuery(limit=max_results),
         query=GmailInboxQuery(
-            from_=BENIFY_SENDER,
+            from_=PROVIDER_SENDER,
             label=label,
             after=after,
             before=before,
@@ -45,7 +45,7 @@ async def list_benify_orders(
     }
 
 
-async def fetch_and_persist_benify_orders(
+async def fetch_and_persist_provider_orders(
     db: AsyncSession,
     gmail_service: Resource,
     merchant_id: int,
@@ -54,7 +54,7 @@ async def fetch_and_persist_benify_orders(
     after: date | None = None,
     before: date | None = None,
 ) -> dict:
-    parsed_orders_response = await list_benify_orders(
+    parsed_orders_response = await list_provider_orders(
         gmail_service=gmail_service,
         merchant_id=merchant_id,
         max_results=max_results,
@@ -68,7 +68,7 @@ async def fetch_and_persist_benify_orders(
     return {
         "persisted_count": persisted_count,
         "debug_message": (
-            f"Fetched {len(parsed_orders)} Benify orders and persisted "
+            f"Fetched {len(parsed_orders)} provider orders and persisted "
             f"{persisted_count} rows for merchant_id={merchant_id}."
         ),
     }
@@ -105,13 +105,7 @@ CSV_COLUMNS = (
 
 
 async def export_orders_csv(db: AsyncSession, merchant_id: int) -> str:
-    """Export a merchant's persisted orders as CSV text.
-
-    This is the "view it as csv" half of the pipeline's premise — the source
-    project did this ad hoc (a manual export used to cross-reference which
-    customers needed a reminder); this is that same shape as a real, tested
-    endpoint instead of a one-off script.
-    """
+    """Export a merchant's persisted orders as CSV text."""
     listing = await list_persisted_orders(db=db, merchant_id=merchant_id)
 
     buffer = io.StringIO()

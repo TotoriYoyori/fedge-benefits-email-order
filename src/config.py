@@ -9,12 +9,6 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Config(BaseSettings):
     """
     Central configuration for the FastAPI application.
-
-    Loads settings from environment variables and a `.env` file. Includes:
-    - Database configuration.
-    - CORS configuration for allowing different origins.
-
-    Sensitive values must be stored securely in environment variables and never hardcoded.
     """
 
     # ----- I. Default

@@ -147,7 +147,7 @@ class GmailInboxQuery(QueryModel):
 
     Example:
         >>> {
-        ...     "from": "fps@benify.com",
+        ...     "from": "orders@benefits-provider.example",
         ...     "label": "inbox",
         ...     "after": "2026-05-01",
         ...     "before": "2026-05-10"

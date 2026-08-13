@@ -3,17 +3,23 @@ from fastapi.responses import JSONResponse
 
 from src.exceptions import BaseExceptionHandler
 
+GENERIC_VALIDATION_ERROR = {"detail": "Invalid request."}
+GENERIC_NOT_FOUND_ERROR = {"detail": "Not found."}
+
 
 # =============== DOMAIN EXCEPTIONS ===============
 class FaultyFlow(Exception):
+    """Server-side misconfiguration (the OAuth flow itself couldn't be built)."""
     pass
 
 
 class ClientSecretNotFound(Exception):
+    """Server-side misconfiguration (missing OAuth client secret)."""
     pass
 
 
 class InvalidGoogleOAuthCallbackState(Exception):
+    """The callback's `code`/`state` query params were missing, unknown, or expired."""
     pass
 
 
@@ -22,11 +28,14 @@ class InvalidPKCE(Exception):
 
 
 class InvalidGoogleOAuthCredential(Exception):
+    """No usable Google OAuth credential for this user (never connected, or stale)."""
     pass
 
 
 # =============== EXCEPTION HANDLERS ===============
 class GoogleExceptionHandler(BaseExceptionHandler):
+
+
     def register_exception_handlers(self) -> None:
         @self.app.exception_handler(ClientSecretNotFound)
         async def client_secret_not_found_handler(
@@ -49,37 +58,21 @@ class GoogleExceptionHandler(BaseExceptionHandler):
                 },
             )
 
+        # ----- callback input problems
         @self.app.exception_handler(InvalidGoogleOAuthCallbackState)
-        async def invalid_google_oauth_callback_state_handler(
-            request: Request, _exc: InvalidGoogleOAuthCallbackState
-        ):
-            return JSONResponse(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                content={
-                    "detail": (
-                        "Invalid Google OAuth callback. Please restart the Google "
-                        "OAuth flow."
-                    )
-                },
-            )
-
         @self.app.exception_handler(InvalidPKCE)
-        async def invalid_pkce_handler(request: Request, _exc: InvalidPKCE):
+        async def callback_validation_handler(request: Request, _exc: Exception):
             return JSONResponse(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                content={"detail": "Google OAuth PKCE verifier is invalid."},
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+                content=GENERIC_VALIDATION_ERROR,
             )
 
+        # ----- credential/identity problems
         @self.app.exception_handler(InvalidGoogleOAuthCredential)
         async def invalid_google_oauth_credential_handler(
             request: Request, _exc: InvalidGoogleOAuthCredential
         ):
             return JSONResponse(
                 status_code=status.HTTP_404_NOT_FOUND,
-                content={
-                    "detail": (
-                        "Google OAuth user_google_credential is invalid. Please redo the Google "
-                        "OAuth flow to obtain a new user_google_credential."
-                    )
-                },
+                content=GENERIC_NOT_FOUND_ERROR,
             )

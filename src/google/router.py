@@ -1,7 +1,7 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, status
-# FIXME: Codesmell google being imported in router.py
+
 from googleapiclient.discovery import Resource
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -49,8 +49,7 @@ router = APIRouter(prefix="/api/v1/google", tags=["api-google"])
             "model": GoogleOAuth2RedirectResponse,
             "description": "Successfully created OAuth2 authorization state",
         },
-        401: {"description": "Unauthorized access"},
-        403: {"description": "Insufficient permissions"},
+        404: {"description": "Not found. OAuth2 initiation failed."},
     },
 )
 async def oauth2(
@@ -74,7 +73,7 @@ async def oauth2(
             "model": GoogleOAuth2CredentialResponse,
             "description": "Successfully exchanged the callback code for new_credential",
         },
-        400: {"description": "Malformed callback or invalid state"},
+        422: {"description": "Invalid request. Missing/unknown/expired callback state, or bad PKCE verifier"},
     },
 )
 async def callback(
@@ -99,7 +98,7 @@ async def callback(
             "model": GoogleOAuth2CredentialResponse,
             "description": "Successfully validated and returned the user's Google OAuth2 user_google_credential",
         },
-        404: {"description": "Google OAuth user_google_credential not found for app user"},
+        404: {"description": "Not found."},
     },
 )
 async def me(
@@ -122,7 +121,7 @@ async def me(
             "model": GoogleOAuth2CredentialResponse,
             "description": "Successfully synced Google OAuth2 new_credential with Gmail",
         },
-        404: {"description": "Google OAuth user_google_credential not found for app user"},
+        404: {"description": "Not found."},
     },
 )
 async def gmail(
@@ -147,7 +146,7 @@ async def gmail(
             "model": GmailInboxResponse,
             "description": "Successfully fetched Gmail inbox messages",
         },
-        404: {"description": "No Gmail messages found for the user"},
+        404: {"description": "Not found."},
     },
 )
 async def get_inbox_messages(

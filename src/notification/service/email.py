@@ -1,12 +1,8 @@
 from src.notification.schemas import EmailSendRequest
 from src.notification.templating import notification_email_template
 
-# --------------- GENERICIZED BUSINESS IDENTITY ---------------
-# The source project hardcoded a real business name and real booking URLs here.
-# This portfolio extraction replaces both with placeholders — see README for why.
-# Swap BUSINESS_NAME and BOOKING_LINKS for your own business to reuse this module.
+# --------------- EXAMPLE BUSINESS IDENTITY ---------------
 BUSINESS_NAME = "the wellness studio"
-
 BOOKING_LINKS: dict[str, str] = {
     "Malmö": "https://example-booking.test/locations/malmo",
     "Helsingborg": "https://example-booking.test/locations/helsingborg",

@@ -1,18 +1,16 @@
 from abc import ABC, abstractmethod
 
 from fastapi import Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 
-class BaseExceptionHandler(ABC):
-    """Shared exception handler utilities. Domain handlers inherit and extend this.
+GENERIC_VALIDATION_ERROR = {"detail": "Invalid request."}
 
-    Note: this is a trimmed, API-only version of the original handler. The source
-    project also rendered browser-facing HTML error pages via a shared SSR template
-    layer; that layer isn't part of this extraction, so every handler here returns
-    JSON only.
-    """
+
+class BaseExceptionHandler(ABC):
+    """Shared exception handler utilities. Domain handlers inherit and extend this."""
 
     def __init__(self, app):
         self.app = app
@@ -33,4 +31,13 @@ class HttpExceptionHandler(BaseExceptionHandler):
                 status_code=exc.status_code,
                 content={"detail": exc.detail},
                 headers=getattr(exc, "headers", None),
+            )
+
+        @self.app.exception_handler(RequestValidationError)
+        async def request_validation_error_handler(
+            request: Request, _exc: RequestValidationError
+        ):
+            return JSONResponse(
+                status_code=422,
+                content=GENERIC_VALIDATION_ERROR,
             )

@@ -14,7 +14,7 @@ from src.google.models import GoogleOAuthCredential
 from src.orders.schemas import OrdersFetchResponse, OrdersListResponse
 from src.orders.service import (
     export_orders_csv,
-    fetch_and_persist_benify_orders,
+    fetch_and_persist_provider_orders,
     list_persisted_orders,
 )
 
@@ -32,7 +32,7 @@ async def fetch_orders(
     before: date | None = Query(default=None),
     db: AsyncSession = Depends(get_db),
 ):
-    return await fetch_and_persist_benify_orders(
+    return await fetch_and_persist_provider_orders(
         db=db,
         gmail_service=gmail_service,
         merchant_id=record.user_id,
@@ -55,10 +55,12 @@ async def get_all_orders(
     "/export",
     summary="Export persisted orders as CSV",
     description=(
-        "Streams the merchant's persisted orders as a CSV file — the 'view as csv' "
-        "step of the pipeline, previously done as a manual, ad hoc export."
+        "Streams the merchant's persisted orders as a CSV file."
     ),
-    responses={200: {"content": {"text/csv": {}}}},
+    responses={
+        200: {"content": {"text/csv": {}}},
+        404: {"description": "Not found."},
+    },
 )
 async def export_orders(
     valid_user: Annotated[User, Depends(require_role("merchant", "admin"))],

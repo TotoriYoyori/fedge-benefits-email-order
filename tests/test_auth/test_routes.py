@@ -34,8 +34,10 @@ async def test_route_register_duplicate_username(client: AsyncClient, session: A
         }
     )
 
-    assert response.status_code == 409
-    assert "Username already exists" in response.json()["detail"]
+    # Deliberately indistinguishable from any other bad /register input —
+    # this endpoint never confirms that a username is taken.
+    assert response.status_code == 422
+    assert response.json() == {"detail": "Invalid request."}
 
 
 async def test_route_login_success(client: AsyncClient, session: AsyncSession):
@@ -57,13 +59,18 @@ async def test_route_login_invalid_credentials(client: AsyncClient):
         "/api/v1/auth/login",
         data={"username": "wronguser", "password": "wrongpassword"}
     )
-    assert response.status_code == 401
-    assert "Unauthenticated. Incorrect username or password." in response.json()["detail"]
+    # Deliberately indistinguishable from a malformed login request — this
+    # endpoint never confirms whether the username exists.
+    assert response.status_code == 422
+    assert response.json() == {"detail": "Invalid request."}
 
 
 async def test_route_me_unauthorized(client: AsyncClient):
     response = await client.get("/api/v1/auth/me")
-    assert response.status_code == 401
+    # A missing token collapses into the same generic "not found" response as
+    # an invalid token or a deleted user — never a distinguishable 401.
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Not found."}
 
 
 async def test_route_me_success(client: AsyncClient, session: AsyncSession):
@@ -81,7 +88,8 @@ async def test_route_me_success(client: AsyncClient, session: AsyncSession):
     assert response.status_code == 200
     data = response.json()
     assert data["username"] == "meuser"
-    assert "passwordHash" in data
+    # UserPrivate must never leak the password hash to the client.
+    assert "passwordHash" not in data
     assert "registrationTime" in data
     assert "message" in data
     assert data["message"] == "Welcome back, master Wick ..."
