@@ -1,0 +1,170 @@
+{
+  "orders": [
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9500-91292",
+      "orderDate": "2026-01-22",
+      "fullName": "Elisabeth Stark",
+      "isCancel": false,
+      "officeEmail": "elisabeth.stark@andersson.com",
+      "privateEmail": null,
+      "treatmentSelected": "spa body treatment detox & recovery 60 min",
+      "location": "Malmö"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9499-25575",
+      "orderDate": "2026-01-20",
+      "fullName": "Erik Sjöström",
+      "isCancel": false,
+      "officeEmail": "erik.sjöström@svensson.net",
+      "privateEmail": null,
+      "treatmentSelected": "foot care wellness spa 60 min x1",
+      "location": "Helsingborg"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9497-91334",
+      "orderDate": "2026-01-20",
+      "fullName": "Börje Johansson",
+      "isCancel": false,
+      "officeEmail": "börje.johansson@svensson.se",
+      "privateEmail": null,
+      "treatmentSelected": "chiropody 60 min x1",
+      "location": "Malmö"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9496-55324",
+      "orderDate": "2026-01-20",
+      "fullName": "Rebecca Holmgren",
+      "isCancel": false,
+      "officeEmail": "rebecca.holmgren@blomqvist.se",
+      "privateEmail": null,
+      "treatmentSelected": "flexi massage (focus on neck, shoulders, back) 45 min x1",
+      "location": "Helsingborg"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9494-64181",
+      "orderDate": "2026-01-20",
+      "fullName": "Christina Johansson",
+      "isCancel": false,
+      "officeEmail": "christina.johansson@holmgren.com",
+      "privateEmail": null,
+      "treatmentSelected": "head massage 45 min x1",
+      "location": "Helsingborg"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9491-10095",
+      "orderDate": "2026-01-20",
+      "fullName": "Lena Eriksson",
+      "isCancel": false,
+      "officeEmail": "lena.eriksson@andersson.se",
+      "privateEmail": null,
+      "treatmentSelected": "flexi massage (focus on neck, shoulders, back) 45 min x1",
+      "location": "Helsingborg"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9488-19505",
+      "orderDate": "2026-01-20",
+      "fullName": "Per Sandström",
+      "isCancel": false,
+      "officeEmail": "per.sandström@isaksson.com",
+      "privateEmail": null,
+      "treatmentSelected": "swedish massage 60 min x1",
+      "location": "Helsingborg"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9485-14389",
+      "orderDate": "2026-01-20",
+      "fullName": "Anna Andersson",
+      "isCancel": false,
+      "officeEmail": "anna.andersson@andersson.se",
+      "privateEmail": null,
+      "treatmentSelected": "spa body treatment detox & recovery 60 min",
+      "location": "Malmö"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9483-2532",
+      "orderDate": "2026-01-20",
+      "fullName": "Åke Mårtensson",
+      "isCancel": false,
+      "officeEmail": "åke.mårtensson@forsberg.com",
+      "privateEmail": null,
+      "treatmentSelected": "flexi massage (focus on neck, shoulders, back) 45 min x1",
+      "location": "Malmö"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9481-30467",
+      "orderDate": "2026-01-20",
+      "fullName": "Amanda Söderström",
+      "isCancel": false,
+      "officeEmail": "amanda.söderström@karlsson.com",
+      "privateEmail": null,
+      "treatmentSelected": "chiropody 60 min x1",
+      "location": "Malmö"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9480-47176",
+      "orderDate": "2026-01-20",
+      "fullName": "Linnea Nordlander",
+      "isCancel": false,
+      "officeEmail": "linnea.nordlander@lindblad.se",
+      "privateEmail": null,
+      "treatmentSelected": "foot care wellness spa 60 min x1",
+      "location": "Helsingborg"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9478-38645",
+      "orderDate": "2026-01-20",
+      "fullName": "Isabelle Wallén",
+      "isCancel": false,
+      "officeEmail": "isabelle.wallén@lennartsson.com",
+      "privateEmail": null,
+      "treatmentSelected": "swedish massage 60 min x1",
+      "location": "Malmö"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9476-21955",
+      "orderDate": "2026-01-19",
+      "fullName": "Maximilian Hermansson",
+      "isCancel": false,
+      "officeEmail": "maximilian.hermansson@nyberg.net",
+      "privateEmail": null,
+      "treatmentSelected": "chiropody 60 min x1",
+      "location": "Malmö"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9473-59891",
+      "orderDate": "2026-01-19",
+      "fullName": "Christoffer Ingvarsson",
+      "isCancel": false,
+      "officeEmail": "christoffer.ingvarsson@ohlsson.org",
+      "privateEmail": null,
+      "treatmentSelected": "foot care wellness spa 60 min x1",
+      "location": "Helsingborg"
+    },
+    {
+      "merchantId": 1,
+      "orderNumber": "b:bfy9472-87092",
+      "orderDate": "2026-01-19",
+      "fullName": "Markus Andersson",
+      "isCancel": false,
+      "officeEmail": "markus.andersson@lofgren.se",
+      "privateEmail": null,
+      "treatmentSelected": "deep therapy massage 60 min",
+      "location": "Helsingborg"
+    }
+  ],
+  "resultSizeEstimate": 15
+}

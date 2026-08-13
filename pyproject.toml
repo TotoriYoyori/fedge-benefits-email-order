@@ -1,0 +1,45 @@
+[project]
+name = "fedge-benefit-email-order"
+version = "0.1.0"
+description = "Email-to-database order pipeline: Gmail extraction, order parsing, CSV export, and reminder emails. Portfolio extraction — see README."
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic==2.12.5",
+    "pydantic-settings==2.13.1",
+    "pydantic[email]",
+    "sqlalchemy==2.0.48",
+    "asyncer==0.0.17",
+    "jinja2==3.1.6",
+    # ----- Web & API
+    "fastapi[standard]==0.135.3",
+    "uvicorn==0.42.0",
+    "alembic==1.18.4",
+    # ----- Google
+    "google-auth==2.49.1",
+    "google-auth-oauthlib==1.3.1",
+    "google-api-python-client==2.193.0",
+    # ----- Database
+    "aiosqlite==0.22.1",
+    "asyncpg==0.30.0",
+    "psycopg2-binary==2.9.10",
+    # ----- Authentication & Security
+    "python-multipart==0.0.24",
+    "pwdlib==0.3.0",
+    "pwdlib[argon2]",
+    "pyjwt==2.12.1",
+    # ----- Email
+    "mailtrap>=2.5.0",
+    "resend>=2.29.0",
+    "beautifulsoup4>=4.14.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.0.3",
+    "pytest-asyncio==1.3.0",
+    "httpx==0.28.1",
+    "faker>=30.0.0",
+]
+
+[tool.uv]
+preview = true

@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment files and secrets — never commit real values
+.env
+credentials.json
+client_secret*.json
+
+# Local database
+*.db
+*.sqlite3
+
+# Test / coverage
+.pytest_cache/
+.coverage
+
+# Editors
+.idea/
+.vscode/
+
+# uv
+.uv-cache/
