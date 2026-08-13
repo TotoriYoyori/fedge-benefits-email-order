@@ -1,31 +1,177 @@
 <!doctype html>
 <html lang="sv">
-<head>
-  <meta charset="utf-8">
-  <title>Boka din behandling</title>
-</head>
-<body style="font-family: Arial, Helvetica, sans-serif; color: #222; max-width: 480px; margin: 0 auto; padding: 24px;">
-  <p>Hej{% if name %} {{ name }}{% endif %}!</p>
-
-  <p>En liten p&aring;minnelse att boka din behandling.</p>
-
-  <p>
-    Du har tidigare best&auml;llt <strong>{{ treatment }}</strong> hos oss p&aring;
-    {{ business_name }} med ditt friskv&aring;rdsbidrag, men har &auml;nnu inte bokat din tid.
-  </p>
-
-  <p>
-    Klicka och boka din tid f&ouml;r {{ location }}:<br>
-    <a href="{{ booking_link }}">{{ booking_link }}</a>
-  </p>
-
-  <p>Med v&auml;nliga h&auml;lsningar,</p>
-
-  <p style="font-size: 0.9em; color: #666;">
-    Om du redan har bokat hos oss, ignorera g&auml;rna detta meddelande.
-    {% if order_number %}<br>Ordernummer: {{ order_number }}{% endif %}
-  </p>
-
-  <p style="font-size: 0.8em; color: #999;">&copy; {{ business_name }}</p>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bokningsbekr&auml;ftelse</title>
+    <style>
+      @media only screen and (max-width: 480px) {
+        .mobile-pad { padding-left: 20px !important; padding-right: 20px !important; }
+      }
+    </style>
+  </head>
+  <body bgcolor="#f5eee6" style="background-color: #f5eee6; margin: 0; padding: 0;">
+    <table
+      width="100%"
+      border="0"
+      cellspacing="0"
+      cellpadding="0"
+      bgcolor="#f5eee6"
+      style="background-color: #f5eee6;"
+    >
+      <tr>
+        <td align="center">
+          <table
+            width="600"
+            border="0"
+            cellspacing="0"
+            cellpadding="0"
+            bgcolor="#ffffff"
+            style="background-color: #ffffff; border-collapse: collapse;"
+          >
+            <tr>
+              <td align="center">
+                <a href="{{ business_website }}" style="text-decoration:none;">
+                <img
+                  src="{{ banner_data_uri }}"
+                  alt="{{ business_name }}"
+                  width="600"
+                  border="0"
+                  style="display: block; width: 600px; border: 0;"
+                />
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td
+                align="center"
+                style="font-family: Georgia, Garamond, Arial, Helvetica, sans-serif; color: #333333;"
+              >
+                <table
+                  width="100%"
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                  style="border-collapse: collapse;"
+                >
+                  <tr>
+                    <td align="center" style="padding: 32px 24px 12px 24px; font-size: 30px; line-height: 38px;">
+                      Hej{% if name %} {{ name }}{% endif %}!
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding: 0 24px 12px 24px; font-size: 22px; line-height: 30px;">
+                      En liten p&aring;minnelse att boka din behandling.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding: 0 40px 14px 40px; font-size: 16px; line-height: 24px;">
+                      Du har tidigare best&auml;llt {{ treatment }} hos oss p&aring; {{ business_name }} med ditt friskv&aring;rdsbidrag, men har &auml;nnu inte bokat din tid.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding: 0 40px 20px 40px; font-size: 16px; line-height: 24px;">
+                      V&auml;lj g&auml;rna v&aring;rt st&auml;lle f&ouml;r att boka tid.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding: 8px 24px 24px 24px;">
+                      <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td align="center" style="padding: 0 8px 0 8px;">
+                            <table border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td align="center" width="100" bgcolor="#a0c5d8" style="background-color: #a0c5d8; padding: 12px 24px;">
+                                  <a
+                                    href="{{ malmo_booking_link }}"
+                                    style="font-family: Georgia, Garamond, Arial, Helvetica, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none"
+                                  >
+                                    Malm&ouml;
+                                  </a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td align="center" style="padding: 0 8px 0 8px;">
+                            <table border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td align="center" width="100" bgcolor="#a0c5d8" style="background-color: #a0c5d8; padding: 12px 24px;">
+                                  <a
+                                    href="{{ helsingborg_booking_link }}"
+                                    style="font-family: Georgia, Garamond, Arial, Helvetica, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none"
+                                  >
+                                    Helsingborg
+                                  </a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding: 0 40px 0 40px;">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td height="1" bgcolor="#eeeeee" style="background-color: #eeeeee; font-size: 1px; line-height: 1px;">
+                            &nbsp;
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding: 20px 40px 0px 40px; font-family: Georgia, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: #888888;">
+                      Om du redan har bokat, ignorera g&auml;rna detta meddelande.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding: 20px 40px 8px 40px; font-family: Georgia, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: #888888;">
+                      Med v&auml;nliga h&auml;lsningar,
+                    </td>
+                  </tr>
+                  {% if order_number %}
+                  <tr>
+                    <td align="center" style="padding: 0 40px 8px 40px; font-family: Georgia, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: #888888;">
+                        Ordernummer: {{ order_number }}
+                    </td>
+                  </tr>
+                  {% endif %}
+                  <tr>
+                    <td align="center" style="padding: 0 40px 28px 40px; font-family: Georgia, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: #888888;">
+                      &copy; {{ business_name }}
+                    </td>
+                  </tr>
+                <tr>
+                  <td align="center" class="mobile-pad" style="font-family: Georgia, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: #888888;">
+                    Malm&ouml;: {{ malmo_address }}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="mobile-pad" style="font-family: Georgia, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: #888888;">
+                    Helsingborg: {{ helsingborg_address }}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="mobile-pad" style="font-family: Georgia, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: #888888;">
+                    {{ business_phone }}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="mobile-pad" style="padding: 0 40px 28px 40px; font-family: Georgia, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: #888888;">
+                    <a href="{{ business_website }}" style="color: #888888; text-decoration: underline;">
+                      {{ business_website_label }}
+                    </a>
+                  </td>
+                </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>
