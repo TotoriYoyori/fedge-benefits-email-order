@@ -1,7 +1,7 @@
 [project]
 name = "fedge-benefit-email-order"
 version = "0.1.0"
-description = "Email-to-database order pipeline: Gmail extraction, order parsing, CSV export, and reminder emails. Portfolio extraction — see README."
+description = "Portfolio piece: email-to-database order pipeline -> Gmail extraction, order parsing, CSV export, and reminder emails."
 requires-python = ">=3.13"
 dependencies = [
     "pydantic==2.12.5",

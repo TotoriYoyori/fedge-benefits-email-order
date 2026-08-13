@@ -46,9 +46,6 @@ async def test_send_notification_admin(client, jwt_token, mock_email_service):
 
 
 async def test_send_notification_unauthorized(client, jwt_token):
-    # 'user' role is not allowed (only merchant, admin). Wrong role collapses
-    # into the same generic "not found" response as no token at all — never
-    # a distinguishable 403.
     token = await jwt_token("user")
     response = await client.post(
         "/api/v1/notification/",
@@ -64,10 +61,7 @@ async def test_send_notification_no_auth(client):
         "/api/v1/notification/",
         json={"toEmail": "test@example.com"}
     )
-    # router.post uses require_role, which uses valid_access_token.
-    # valid_access_token raises UnauthenticatedUser if no access_token, and
-    # the shared auth exception handler now maps that to a generic 404
-    # rather than a distinguishable 401 — see auth.exceptions for why.
+
     assert response.status_code == status.HTTP_404_NOT_FOUND
     assert response.json() == {"detail": "Not found."}
 

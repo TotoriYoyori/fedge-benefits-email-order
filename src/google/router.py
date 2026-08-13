@@ -49,7 +49,7 @@ router = APIRouter(prefix="/api/v1/google", tags=["api-google"])
             "model": GoogleOAuth2RedirectResponse,
             "description": "Successfully created OAuth2 authorization state",
         },
-        404: {"description": "Not found. OAuth2 initiation failed."},
+        404: {"description": "Not found."},
     },
 )
 async def oauth2(

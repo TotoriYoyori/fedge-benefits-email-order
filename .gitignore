@@ -8,7 +8,7 @@ build/
 .venv/
 venv/
 
-# Environment files and secrets — never commit real values
+# Environment files and secrets
 .env
 credentials.json
 client_secret*.json

@@ -34,8 +34,6 @@ async def test_route_register_duplicate_username(client: AsyncClient, session: A
         }
     )
 
-    # Deliberately indistinguishable from any other bad /register input —
-    # this endpoint never confirms that a username is taken.
     assert response.status_code == 422
     assert response.json() == {"detail": "Invalid request."}
 
@@ -59,16 +57,14 @@ async def test_route_login_invalid_credentials(client: AsyncClient):
         "/api/v1/auth/login",
         data={"username": "wronguser", "password": "wrongpassword"}
     )
-    # Deliberately indistinguishable from a malformed login request — this
-    # endpoint never confirms whether the username exists.
+
     assert response.status_code == 422
     assert response.json() == {"detail": "Invalid request."}
 
 
 async def test_route_me_unauthorized(client: AsyncClient):
     response = await client.get("/api/v1/auth/me")
-    # A missing token collapses into the same generic "not found" response as
-    # an invalid token or a deleted user — never a distinguishable 401.
+
     assert response.status_code == 404
     assert response.json() == {"detail": "Not found."}
 
@@ -88,7 +84,7 @@ async def test_route_me_success(client: AsyncClient, session: AsyncSession):
     assert response.status_code == 200
     data = response.json()
     assert data["username"] == "meuser"
-    # UserPrivate must never leak the password hash to the client.
+
     assert "passwordHash" not in data
     assert "registrationTime" in data
     assert "message" in data
@@ -111,8 +107,3 @@ async def test_route_register_with_extra_fields(client: AsyncClient):
     assert data["username"] == "extrafieldsuser"
     assert "malicious_field" not in data
     assert "internal_flag" not in data
-
-# Note: the source project also had a `test_login_form_uses_https` test here,
-# exercising a server-rendered `/login` HTML page. That SSR layer isn't part
-# of this extraction (API-only, see README), so the route no longer exists
-# and the test was dropped rather than adapted.

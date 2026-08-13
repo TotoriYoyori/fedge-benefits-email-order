@@ -19,10 +19,6 @@ class TestStateIsStale:
         assert state_is_stale(oauth_state) is False
 
 
-
-# pytest tests/test_google/test_service/test_client.py -v
-
-
 class TestFetchBaseFlow:
     def test_uses_env_client_config_when_available(self):
         settings = SimpleNamespace(

@@ -1,7 +1,4 @@
-"""Generate a synthetic orders CSV in the same shape the real (excluded) sample
-data had — used as the demo fixture and to keep the repo reproducible without
-any real customer data. Re-run with a fixed seed for stable output.
-
+"""
 Usage: python sample/generate_synthetic_orders.py
 """
 

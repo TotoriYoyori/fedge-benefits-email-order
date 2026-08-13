@@ -1,16 +1,61 @@
 date,full_name,order_number,is_cancel,office_email,private_email,treatment_selected,location
-2026-01-22,Elisabeth Stark,b:bfy9500-91292,False,elisabeth.stark@andersson.com,,spa body treatment detox & recovery 60 min,Malmö
-2026-01-20,Erik Sjöström,b:bfy9499-25575,False,erik.sjöström@svensson.net,,foot care wellness spa 60 min x1,Helsingborg
-2026-01-20,Börje Johansson,b:bfy9497-91334,False,börje.johansson@svensson.se,,chiropody 60 min x1,Malmö
-2026-01-20,Rebecca Holmgren,b:bfy9496-55324,False,rebecca.holmgren@blomqvist.se,,"flexi massage (focus on neck, shoulders, back) 45 min x1",Helsingborg
+2026-01-22,Elisabeth Stark,b:bfy9500-91292,False,elisabeth.stark@andersson.com,erik31@swipnet.se,spa body treatment detox & recovery 60 min,Malmö
+2026-01-20,Erik Sjöström,b:bfy9499-25575,False,erik.sjöström@svensson.net,sven62@swipnet.se,foot care wellness spa 60 min x1,Helsingborg
+2026-01-20,Börje Johansson,b:bfy9497-91334,False,börje.johansson@svensson.se,erikssonolof@swipnet.se,chiropody 60 min x1,Malmö
+2026-01-20,Rebecca Holmgren,b:bfy9496-55324,False,rebecca.holmgren@blomqvist.se,douglas27@live.se,"flexi massage (focus on neck, shoulders, back) 45 min x1",Helsingborg
 2026-01-20,Christina Johansson,b:bfy9494-64181,False,christina.johansson@holmgren.com,,head massage 45 min x1,Helsingborg
-2026-01-20,Lena Eriksson,b:bfy9491-10095,False,lena.eriksson@andersson.se,,"flexi massage (focus on neck, shoulders, back) 45 min x1",Helsingborg
-2026-01-20,Per Sandström,b:bfy9488-19505,False,per.sandström@isaksson.com,,swedish massage 60 min x1,Helsingborg
-2026-01-20,Anna Andersson,b:bfy9485-14389,False,anna.andersson@andersson.se,,spa body treatment detox & recovery 60 min,Malmö
-2026-01-20,Åke Mårtensson,b:bfy9483-2532,False,åke.mårtensson@forsberg.com,,"flexi massage (focus on neck, shoulders, back) 45 min x1",Malmö
-2026-01-20,Amanda Söderström,b:bfy9481-30467,False,amanda.söderström@karlsson.com,,chiropody 60 min x1,Malmö
-2026-01-20,Linnea Nordlander,b:bfy9480-47176,False,linnea.nordlander@lindblad.se,,foot care wellness spa 60 min x1,Helsingborg
-2026-01-20,Isabelle Wallén,b:bfy9478-38645,False,isabelle.wallén@lennartsson.com,,swedish massage 60 min x1,Malmö
+2026-01-20,Lena Eriksson,b:bfy9491-10095,False,lena.eriksson@andersson.se,nilsagren@spray.se,"flexi massage (focus on neck, shoulders, back) 45 min x1",Helsingborg
+2026-01-20,Per Sandström,b:bfy9488-19505,False,per.sandström@isaksson.com,perssonanders@yahoo.de,swedish massage 60 min x1,Helsingborg
+2026-01-20,Anna Andersson,b:bfy9485-14389,False,anna.andersson@andersson.se,boalmgren@googlemail.com,spa body treatment detox & recovery 60 min,Malmö
+2026-01-20,Åke Mårtensson,b:bfy9483-2532,False,åke.mårtensson@forsberg.com,perssonhans@yahoo.de,"flexi massage (focus on neck, shoulders, back) 45 min x1",Malmö
+2026-01-20,Amanda Söderström,b:bfy9481-30467,False,amanda.söderström@karlsson.com,vlindberg@telia.com,chiropody 60 min x1,Malmö
+2026-01-20,Linnea Nordlander,b:bfy9480-47176,False,linnea.nordlander@lindblad.se,kristinamartinsson@googlemail.com,foot care wellness spa 60 min x1,Helsingborg
+2026-01-20,Isabelle Wallén,b:bfy9478-38645,False,isabelle.wallén@lennartsson.com,backstromellen@telia.com,swedish massage 60 min x1,Malmö
 2026-01-19,Maximilian Hermansson,b:bfy9476-21955,False,maximilian.hermansson@nyberg.net,,chiropody 60 min x1,Malmö
-2026-01-19,Christoffer Ingvarsson,b:bfy9473-59891,False,christoffer.ingvarsson@ohlsson.org,,foot care wellness spa 60 min x1,Helsingborg
-2026-01-19,Markus Andersson,b:bfy9472-87092,False,markus.andersson@lofgren.se,,deep therapy massage 60 min,Helsingborg
+2026-01-19,Christoffer Ingvarsson,b:bfy9473-59891,False,christoffer.ingvarsson@ohlsson.org,ingridkarlsson@googlemail.com,foot care wellness spa 60 min x1,Helsingborg
+2026-01-19,Markus Andersson,b:bfy9472-87092,False,markus.andersson@lofgren.se,eklundhelena@googlemail.com,deep therapy massage 60 min,Helsingborg
+2026-01-19,Lucia Singh,b:bfy9469-91050,True,lucia.singh@andersson.net,ystenstrom@swipnet.se,spa body treatment detox & recovery 60 min,Helsingborg
+2026-01-18,Agneta Boström,b:bfy9466-33366,True,agneta.boström@noren.net,,head massage 45 min x1,Malmö
+2026-01-16,Anders Johansson,b:bfy9463-77777,False,anders.johansson@karlsson.net,nordqvistwilliam@gmail.com,chiropody 60 min x1,Malmö
+2026-01-16,Emma Blom,b:bfy9462-10486,False,emma.blom@svensson.com,doriskarlsson@live.se,foot massage 45 min x1,Helsingborg
+2026-01-15,Siv Mattsson,b:bfy9459-63458,False,siv.mattsson@johansson.com,,foot care wellness spa 60 min x1,Helsingborg
+2026-01-14,Rolf Norgren,b:bfy9456-16571,False,rolf.norgren@sjoberg.com,sjostrandrobin@yahoo.de,spa body treatment detox & recovery 60 min,Helsingborg
+2026-01-14,Lars Nilsson,b:bfy9454-38152,False,lars.nilsson@ahlstrom.se,olarsson@gmail.com,aromavedic body massage 60 min x1,Malmö
+2026-01-14,Olof Fredriksson,b:bfy9451-56595,False,olof.fredriksson@svensson.com,tandersson@spray.se,yoga massage 60 min x1,Malmö
+2026-01-14,Cecilia Grönlund Forsberg,b:bfy9450-60028,False,cecilia.grönlund.forsberg@thulin.com,,foot care wellness spa 60 min x1,Malmö
+2026-01-13,Göran Ekman,b:bfy9447-8174,False,göran.ekman@lindblad.se,rhedlund@live.se,aromavedic body massage 60 min x1,Helsingborg
+2026-01-13,Björn Hussein,b:bfy9444-98348,False,björn.hussein@johansson.com,nils14@spray.se,foot massage 45 min x1,Malmö
+2026-01-13,Pernilla Sjöholm,b:bfy9443-80517,False,pernilla.sjöholm@lantz.se,ingegerd08@gmail.com,spa body treatment detox & recovery 60 min,Helsingborg
+2026-01-13,Ahmed Andersson,b:bfy9442-63260,False,ahmed.andersson@mattsson.org,maria74@spray.se,yoga massage 60 min x1,Helsingborg
+2026-01-13,Sten Ali,b:bfy9440-43637,False,sten.ali@berglund.com,jafarierik@googlemail.com,yoga massage 60 min x1,Malmö
+2026-01-12,Robert Johansson,b:bfy9437-59587,False,robert.johansson@ahmad.se,,spa body treatment detox & recovery 60 min,Malmö
+2026-01-12,Sara Bäckström,b:bfy9435-65414,False,sara.bäckström@nilsson.net,lindgrenjuan@googlemail.com,spa body treatment detox & recovery 60 min,Malmö
+2026-01-12,Sören Karlsson,b:bfy9434-28471,False,sören.karlsson@ohman.se,alexanderalmgren@live.se,"flexi massage (focus on neck, shoulders, back) 45 min x1",Malmö
+2026-01-12,Maria Larsson,b:bfy9431-67034,False,maria.larsson@stahl.com,ekholmsven@spray.se,chiropody 60 min x1,Malmö
+2026-01-12,Jakob Josefsson,b:bfy9428-92825,False,jakob.josefsson@sjodin.com,nils87@gmail.com,chiropody 60 min x1,Helsingborg
+2026-01-10,Sara Johansson,b:bfy9425-25034,False,sara.johansson@forsell.com,lundinbertil@swipnet.se,"flexi massage (focus on neck, shoulders, back) 45 min x1",Helsingborg
+2026-01-10,Linda Karlsson,b:bfy9424-55655,False,linda.karlsson@jansson.se,mjohansson@live.se,head massage 45 min x1,Malmö
+2026-01-10,Sophia Eriksson,b:bfy9421-70608,True,sophia.eriksson@aberg.com,,head massage 45 min x1,Malmö
+2026-01-10,Inger Ekman Karlsson,b:bfy9418-36842,False,inger.ekman.karlsson@magnusson.se,sjogrenmaria@gmail.com,foot care wellness package 75 min x1,Helsingborg
+2026-01-10,Andrea Karlsson-Hellgren,b:bfy9416-65235,False,andrea.karlsson-hellgren@ohman.com,,aromavedic body massage 60 min x1,Malmö
+2026-01-10,Juni Nilsson,b:bfy9415-6366,False,juni.nilsson@sandberg.se,nilssonleona@swipnet.se,deep therapy massage 60 min,Helsingborg
+2026-01-10,Elisabet Dahlberg-Jansson,b:bfy9414-84561,False,elisabet.dahlberg-jansson@frid.org,sgreen@swipnet.se,swedish massage 60 min x1,Malmö
+2026-01-10,Alex Andersson,b:bfy9412-37126,False,alex.andersson@gustafsson.org,ifrid@googlemail.com,spa body treatment detox & recovery 60 min,Helsingborg
+2026-01-10,Fatima Nilsson,b:bfy9409-41673,False,fatima.nilsson@aronsson.com,,"flexi massage (focus on neck, shoulders, back) 45 min x1",Helsingborg
+2026-01-10,Oskar Aronsson,b:bfy9408-20511,False,oskar.aronsson@nilsson.com,edlundkatarina@gmail.com,chiropody 60 min x1,Helsingborg
+2026-01-08,Elin Persson,b:bfy9405-95005,False,elin.persson@eriksson.se,karl-erik19@live.se,swedish massage 60 min x1,Helsingborg
+2026-01-08,Jakob Zetterberg,b:bfy9404-5951,True,jakob.zetterberg@jakobsson.com,,foot care wellness package 75 min x1,Malmö
+2026-01-07,Iris Lindgren,b:bfy9401-13152,False,iris.lindgren@lundgren.org,erikssonkristina@live.se,aromavedic body massage 60 min x1,Helsingborg
+2026-01-06,Astrid Björklund,b:bfy9398-67467,False,astrid.björklund@omar.se,,spa body treatment detox & recovery 60 min,Malmö
+2026-01-04,Kristina Eriksson-Sundell,b:bfy9395-53156,False,kristina.eriksson-sundell@hosseini.net,fkvist@spray.se,foot massage 45 min x1,Malmö
+2026-01-03,Sixten Nord,b:bfy9393-84484,False,sixten.nord@liu.se,,spa body treatment detox & recovery 60 min,Helsingborg
+2026-01-03,Carl Sjölin,b:bfy9392-13441,False,carl.sjölin@stromberg.com,hansjonsson@googlemail.com,head massage 45 min x1,Helsingborg
+2026-01-03,Ulf Engström,b:bfy9390-33154,False,ulf.engström@samuelsson.se,mariandersson@gmail.com,yoga massage 60 min x1,Malmö
+2026-01-03,Åke Karlsson-Björk,b:bfy9387-92294,True,åke.karlsson-björk@fredriksson.se,pjonsson@live.se,swedish massage 60 min x1,Helsingborg
+2026-01-03,Terese Oskarsson,b:bfy9384-3711,False,terese.oskarsson@akerlund.se,mhussein@yahoo.de,foot care wellness package 75 min x1,Malmö
+2026-01-01,Ronny Karlsson,b:bfy9381-4357,False,ronny.karlsson@ekelund.se,,deep therapy massage 60 min,Malmö
+2025-12-31,Emmy Danielsson,b:bfy9379-17490,False,emmy.danielsson@henningsson.se,christopher22@googlemail.com,yoga massage 60 min x1,Helsingborg
+2025-12-29,Hilding Åkesson,b:bfy9377-72326,False,hilding.åkesson@andersson.se,conny04@googlemail.com,spa body treatment detox & recovery 60 min,Malmö
+2025-12-29,Elisabet Franzén,b:bfy9376-62199,False,elisabet.franzén@ekstrom.com,ngranstrom@swipnet.se,spa body treatment detox & recovery 60 min,Helsingborg
+2025-12-27,Kim Larsson,b:bfy9373-8575,False,kim.larsson@oberg.net,lundbergmarie@telia.com,chiropody 60 min x1,Malmö
+2025-12-26,Karl Davidsson,b:bfy9370-4704,False,karl.davidsson@nilsson.com,rydenarne@telia.com,"flexi massage (focus on neck, shoulders, back) 45 min x1",Malmö
