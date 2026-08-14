@@ -1,7 +1,5 @@
 ![FEDGE banner](assets/img/fedge_banner.png)
 
-# FEDGE... or at least, the Benefit Order Email half of it
-
 **A FastAPI backend that turns Gmail order-confirmation emails into structured records and reminder emails
 for a real small business.**
 
@@ -20,11 +18,6 @@ through Bokadirekt, **which has no direct link back to the benefits platform's c
 
 ![FEDGE high level idea](assets/img/fedge_high_level.png)
 
-A relative of mine, running exactly this kind of business, **ends up reconciling everything by hand:**
-check the inbox for a new order confirmation, cross-reference it against Bokadirekt to see if the customer 
-actually booked, then match both of those against whatever payment eventually clears. 
-
-And so they ask me:
 *'If only there was one place to manage all these transactions.'*
 
 ![FEDGE feature design scope](assets/img/fedge_flow.png)
@@ -111,36 +104,8 @@ coded in here (Resend for sending emails, Gmail for parsing emails, etc.) and th
 copy of the .env file.
 
 ---
-## Read more if you want to know
-
-### Initial thinking
-For the backend, I went with FastAPI: this project was about data, not serving HTML, so I didn't need Django's full 
-templating stack, and FastAPI's async design plus Pydantic validation was the stack I actively 
-wanted to get fluent in. 
-
-For structure, I organized by domain (`auth`, `google`, `orders`, `notification`), following this GitHub's 
-[best practice recommendation for FastAPI projects](https://github.com/zhanymkanov/fastapi-best-practices).
-
-### Challenges and probably the reason why this project stopped
-
-1. **Gmail doesn't scale the way I'd need it to.** Fine for one business checking its own inbox a few dozen times a day. 
-Quota limits and per-call cost scale with tenant count in a way I never solved, if this ever needed to serve more 
-than one studio.
-
-2. **Data privacy and rights of access.** Names, emails, treatment selections, that data technically belongs to the 
-benefits platform, not to the studio using this, and not to me. I didn't have a satisfying answer to "who owns this, 
-under what terms am I processing it," and I didn't want to keep building on top of an unresolved compliance question.
-
-3. **The SSR layer was a mistake, in hindsight.** The original bolted a server-rendered frontend: Jinja templates, 
-login/dashboard HTML, directly onto the FastAPI app (see the legacy dashboard screenshot above). FastAPI is not a 
-frontend framework, and making it act like one meant fighting the tool. If I rebuilt this today: FastAPI stays 
-an API, a real JS frontend does the rest.
-
----
 **Built with** --> FastAPI | SQLAlchemy 2.0 (async) | Pydantic v2 | Alembic | pytest
 
 **Also used** --> uv | Jinja2 | Resend | Mailtrap | Faker | And more...
 
 License: MIT — see [LICENSE](LICENSE).
-
-> *If you like my work and would like to discuss employment opportunities --> **email: stan.mng@gmail.com***.
