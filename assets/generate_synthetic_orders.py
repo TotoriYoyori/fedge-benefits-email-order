@@ -1,5 +1,5 @@
 """
-Usage: python sample/generate_synthetic_orders.py
+Usage: python assets/generate_synthetic_orders.py
 """
 
 import csv
@@ -28,7 +28,7 @@ TREATMENTS = [
     "foot care wellness package 75 min x1",
     "foot care wellness spa 60 min x1",
 ]
-OUTPUT_PATH = Path(__file__).resolve().parent / "sample_orders.csv"
+OUTPUT_PATH = Path(__file__).resolve().parent / "sample_data" / "fake_orders.csv"
 
 
 def fake_order_number(batch: int) -> str:
